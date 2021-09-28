@@ -1,0 +1,19 @@
+label: Aries Cloud Agent + My Plugin
+
+# Admin
+admin: [0.0.0.0, 3001]
+admin-insecure-mode: true
+
+# Load toolbox plugin
+plugin:
+  - my_plugin
+
+# Transport
+inbound-transport:
+  - [http, 0.0.0.0, 3000]
+outbound-transport: http
+endpoint:
+  - http://localhost:3000
+
+# Ledger
+no-ledger: true
