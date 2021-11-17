@@ -23,8 +23,8 @@ and/or the plugin (paths must be adapted to your environment):
 
 ```sh
 $ docker run -it -p 3000:3000 -p 3001:3001 --rm \
-	-v ../aries-cloudagent-python/aries_cloudagent:/home/indy/site-packages/aries_cloudagent:z \
-	-v ../aries-acapy-with-plugin/my_plugin:/home/indy/my_plugin:z \
+	-v ../../aries-cloudagent-python/aries_cloudagent:/home/indy/site-packages/aries_cloudagent:z \
+	-v ../my_plugin:/home/indy/my_plugin:z \
 	acapy-with-plugin
 ```
 
