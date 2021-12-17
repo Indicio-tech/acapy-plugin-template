@@ -5,6 +5,7 @@ import pytest
 
 import my_plugin as test_module
 
+
 @pytest.fixture
 def context(event_bus):
     context = InjectionContext()
