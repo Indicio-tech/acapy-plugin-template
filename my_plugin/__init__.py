@@ -5,6 +5,7 @@ from aries_cloudagent.config.injection_context import InjectionContext
 from aries_cloudagent.core.event_bus import Event, EventBus
 from aries_cloudagent.core.profile import Profile
 
+
 async def setup(context: InjectionContext):
     """Setup the plugin."""
     bus = context.inject(EventBus)
