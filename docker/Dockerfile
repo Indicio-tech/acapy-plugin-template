@@ -1,4 +1,5 @@
-FROM bcgovimages/von-image:py36-1.16-1
+FROM ghcr.io/hyperledger/aries-cloudagent-python:py3.9-0.8.1-rc1
+# bcgovimages/von-image:py36-1.16-1
 
 RUN pip3 install --no-cache-dir poetry
 
@@ -16,8 +17,8 @@ COPY ./pyproject.toml .
 COPY ./poetry.lock .
 COPY ./docker/default.yml .
 USER root
-RUN chown indy:indy -R .
-USER indy
+RUN chown aries:aries -R .
+USER aries 
 
 RUN poetry install --no-dev
 
