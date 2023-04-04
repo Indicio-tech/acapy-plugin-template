@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 env:
-  POETRY_VERSION: 1.1.7
+  POETRY_VERSION: 1.1.11
 
 jobs:
   format:
