@@ -11,6 +11,7 @@ on:
 
 env:
   POETRY_VERSION: 1.1.11
+  BLACK_VERSION: 22.6.0
 
 jobs:
   format:
@@ -27,11 +28,11 @@ jobs:
         uses: actions/cache@v2
         with:
             path: ${{ env.pythonLocation }}
-            key: ${{ runner.os }}-formatting-black-21.8b0
+            key: ${{ runner.os }}-formatting-black-${{ env.BLACK_VERSION }}
       - name: Install black
         if: steps.cache-env.outputs.cache-hit != 'true'
         run: |
-            pip install black==21.8b0
+            pip install black==${{ env.BLACK_VERSION }}
       - name: Black Format Check
         run: |
             black --check .
