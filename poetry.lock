@@ -197,14 +197,14 @@ yaml = ["PyYAML (>=3.10)"]
 
 [[package]]
 name = "aries-cloudagent"
-version = "0.8.1rc1"
+version = "0.8.1rc2"
 description = ""
 category = "main"
 optional = false
 python-versions = ">=3.6.3"
 files = [
-    {file = "aries_cloudagent-0.8.1rc1-py3-none-any.whl", hash = "sha256:60d3ee8df5f53d8f310bb5f5f5234ea568174dbc1891cfe7a8e9c3245b1f8242"},
-    {file = "aries_cloudagent-0.8.1rc1.tar.gz", hash = "sha256:4e6e73d1d9cb50f01b325686050820fb564dbdb697fc72ef020fdf932be5a2c7"},
+    {file = "aries_cloudagent-0.8.1rc2-py3-none-any.whl", hash = "sha256:c33a4682ee20ae2467cd20ed56333007ba4a3af49fb71a50ebf5eca42c4f919e"},
+    {file = "aries_cloudagent-0.8.1rc2.tar.gz", hash = "sha256:d0c946666e78ac77d067e3d51a187641a6eae2010ee9f870af49a340ae59f0af"},
 ]
 
 [package.dependencies]
