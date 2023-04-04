@@ -5,7 +5,7 @@ description = "ACA-Py Plugin Template"
 authors = ["Your Name <example@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.6"
 aries-cloudagent = {version = "^0.8.1-rc1", extras = ["indy"], allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
