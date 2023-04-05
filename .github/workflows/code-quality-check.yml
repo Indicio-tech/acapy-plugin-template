@@ -10,7 +10,8 @@ on:
     branches: [ main ]
 
 env:
-  POETRY_VERSION: 1.1.7
+  POETRY_VERSION: 1.3.2
+  BLACK_VERSION: 22.6.0
 
 jobs:
   format:
@@ -18,20 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.6
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
-            python-version: 3.6
+            python-version: 3.9
       - name: Cache python environment
         id: cache-env
         uses: actions/cache@v2
         with:
             path: ${{ env.pythonLocation }}
-            key: ${{ runner.os }}-formatting-black-21.8b0
+            key: ${{ runner.os }}-formatting-black-${{ env.BLACK_VERSION }}
       - name: Install black
         if: steps.cache-env.outputs.cache-hit != 'true'
         run: |
-            pip install black==21.8b0
+            pip install black==${{ env.BLACK_VERSION }}
       - name: Black Format Check
         run: |
             black --check .
@@ -41,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.9]
 
     steps:
     - uses: actions/checkout@v2
