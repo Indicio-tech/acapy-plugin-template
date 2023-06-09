@@ -9,7 +9,7 @@ python = "^3.9"
 aries-cloudagent = { version = "0.8.2-rc0", extras = ["indy"], allow-prereleases = true }
 
 [tool.poetry.dev-dependencies]
-black = "^23.3.0"
+black = "^22.8.0"
 flake8 = "^6.0.0"
 pre-commit = "^2.12.1"
 pytest = "^6.2.3"
