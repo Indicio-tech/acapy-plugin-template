@@ -2,6 +2,7 @@ FROM python:3.9-slim-bullseye
 WORKDIR /usr/src/app
 
 # Install and Configure Poetry
+RUN apt-get update && apt-get install -y curl
 ENV POETRY_VERSION=1.4.2
 ENV POETRY_HOME=/opt/poetry
 RUN curl -sSL https://install.python-poetry.org | python -
