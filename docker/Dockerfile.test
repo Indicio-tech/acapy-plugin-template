@@ -1,19 +1,20 @@
-FROM python:3.6.13
+FROM python:3.9-slim-bullseye
+WORKDIR /usr/src/app/
 
-WORKDIR /usr/src/app
+# Install and Configure Poetry
+ENV POETRY_VERSION=1.4.2
+ENV POETRY_HOME=/opt/poetry
+RUN curl -sSL https://install.python-poetry.org | python -
+ENV PATH="/opt/poetry/bin:$PATH"
+RUN poetry config virtualenvs.in-project true
 
-RUN pip3 install --no-cache-dir poetry
-
-RUN mkdir my_plugin; touch ./my_plugin/__init__.py
-COPY ./README.md .
-COPY ./pyproject.toml .
-COPY ./poetry.lock .
+# Setup project
+RUN mkdir my_plugin; touch my_plugin/__init__.py
+COPY pyproject.toml poetry.lock README.md ./
 
 RUN poetry install
-# Make site packages location more accessible (for use with volumes)
-RUN ln -s $(poetry env info -p)/lib/python3.6/site-packages site-packages
 
 COPY ./my_plugin my_plugin
 COPY ./tests tests
 
-ENTRYPOINT ["/bin/sh", "-c", "poetry run pytest tests\"$@\"", "--"]
+ENTRYPOINT ["poetry", "run", "pytest", "tests"]
