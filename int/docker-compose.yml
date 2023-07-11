@@ -7,7 +7,24 @@ services:
       dockerfile: docker/Dockerfile
     ports:
       - 3001:3001
-    command: start -it http 0.0.0.0 3000 -ot http -e http://acapy-with-plugin:3000 --no-ledger --admin 0.0.0.0 3001 --admin-insecure-mode --plugin my_plugin
+    volumes:
+      - ./int/healthcheck.py:/usr/src/app/healthcheck.py:z,ro
+    command: >
+      start
+      -it http 0.0.0.0 3000
+      -ot http
+      -e http://acapy-with-plugin:3000
+      --no-ledger
+      --admin 0.0.0.0 3001
+      --admin-insecure-mode
+      --plugin my_plugin
+    healthcheck:
+      test: ["CMD-SHELL", "python", "healthcheck.py", "http://localhost:3001/status/live"]
+      start_period: 10s
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
 
   #*************************************************************
   # tester: drives tests in a                                  *
@@ -20,13 +37,9 @@ services:
         context: .
         dockerfile: Dockerfile.test.runner
       environment:
-        - WAIT_BEFORE_HOSTS=6
-        - WAIT_HOSTS=acapy-with-plugin:3001
-        - WAIT_HOSTS_TIMEOUT=60
-        - WAIT_SLEEP_INTERVAL=1
-        - WAIT_HOST_CONNECT_TIMEOUT=30
         - AGENT_HOST=acapy-with-plugin
         - AGENT_PORT=3000
         - AGENT_BACKCHANNEL_PORT=3001
       depends_on:
-        - acapy-with-plugin
+        acapy-with-plugin:
+          condition: service_healthy
